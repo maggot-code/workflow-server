@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2023-08-27 16:30:42
  * @LastEditors: maggot-code
- * @LastEditTime: 2023-08-28 01:30:48
+ * @LastEditTime: 2023-08-28 01:58:01
  * @Description:
  */
 package biz
@@ -92,7 +92,7 @@ func (oc *OxygenUseCase) RecordOxygen(ctx *gin.Context, oxygen *Oxygen) error {
 
 	length := len(voids)
 	// 如果voids长度为0说明没有无效数据，直接保存该次上报数据
-	if length == 0 {
+	if length <= 0 {
 		return oc.repo.Record(ctx, oxygen)
 	}
 
