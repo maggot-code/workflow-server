@@ -1,0 +1,10 @@
+name: server
+server:
+  addr: 127.0.0.1:8080
+data:
+  database:
+    driver: mysql
+    source: ROOT:123456@tcp(127.0.0.1:3306)/TABLE?charset=utf8&parseTime=True&loc=Local
+wechat:
+  appid:
+  secret:

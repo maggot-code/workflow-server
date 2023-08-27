@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package adams.conf;
+
+option go_package = "github.com/maggot-code/workflow-server/internal/conf;conf";
+
+message Bootstrap {
+  string name = 1;
+  Server server = 2;
+  Data data = 3;
+  Wechat wechat = 4;
+}
+
+message Server { string addr = 1; }
+
+message Data { Database database = 1; }
+
+message Database {
+  string driver = 1;
+  string source = 2;
+}
+
+message Wechat {
+  string appid = 1;
+  string secret = 2;
+}

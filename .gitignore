@@ -13,9 +13,26 @@
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+.DS_Store
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
 # Go workspace file
+.vscode
+*.locl.yaml
+wire_gen.go
+*.http
+*.pb.go
 go.work
+go.sum
+buf.lock
+tmp
+
+# 忽略文件夹中的所有内容
+configs/*
+deploy/docker-compose/*
+
+# 但是允许提交指定的文件
+!configs/config.example.yaml
+!deploy/docker-compose/docker-compose.example.yaml
