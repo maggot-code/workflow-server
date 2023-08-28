@@ -3,13 +3,14 @@
  * @Author: maggot-code
  * @Date: 2023-08-13 02:10:01
  * @LastEditors: maggot-code
- * @LastEditTime: 2023-08-16 15:14:36
+ * @LastEditTime: 2023-08-28 22:30:38
  * @Description:
  */
 package main
 
 import (
 	"flag"
+	"fmt"
 
 	"github.com/gin-gonic/gin"
 	"github.com/maggot-code/workflow-server/internal/conf"
@@ -42,6 +43,7 @@ func main() {
 		panic(err)
 	}
 
+	fmt.Println(conf)
 	app, cleanup, err := wireApp(conf)
 	if err != nil {
 		panic(err)
