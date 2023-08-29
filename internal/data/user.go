@@ -3,12 +3,13 @@
  * @Author: maggot-code
  * @Date: 2023-08-14 14:52:18
  * @LastEditors: maggot-code
- * @LastEditTime: 2023-08-22 17:33:47
+ * @LastEditTime: 2023-08-29 19:14:42
  * @Description:
  */
 package data
 
 import (
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -35,7 +36,12 @@ func (ur *userRepo) CodeToSession(ctx *gin.Context, code string) (*biz.UserCodeT
 		return nil, fmt.Errorf("wechat: build code to session addr fail; %w", err)
 	}
 
-	res, err := http.Get(addr)
+	client := http.Client{
+		Transport: &http.Transport{
+			TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+		},
+	}
+	res, err := client.Get(addr)
 	if err != nil {
 		return nil, fmt.Errorf("wechat: get code to session server fail; %w", err)
 	}

@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2023-08-15 21:17:44
  * @LastEditors: maggot-code
- * @LastEditTime: 2023-08-22 15:43:35
+ * @LastEditTime: 2023-08-29 20:26:38
  * @Description:
  */
 package middleware
@@ -22,6 +22,7 @@ func Authentication(conf *conf.Bootstrap) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		auth := ctx.GetHeader("Authorization")
 		if len(auth) == 0 {
+			fmt.Printf("middleware: authorization is empty")
 			handler.Unauthorized(ctx)
 			ctx.Abort()
 			return
@@ -29,6 +30,7 @@ func Authentication(conf *conf.Bootstrap) gin.HandlerFunc {
 
 		token, err := jwt.Parse(conf.Wechat.Secret, auth)
 		if err != nil {
+			fmt.Printf("middleware: parse token error; %v", err.Error())
 			handler.Unauthorized(ctx)
 			ctx.Abort()
 			return
