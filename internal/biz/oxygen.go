@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2023-08-27 16:30:42
  * @LastEditors: maggot-code
- * @LastEditTime: 2023-08-28 01:58:01
+ * @LastEditTime: 2023-09-05 18:36:26
  * @Description:
  */
 package biz
@@ -105,6 +105,7 @@ func (oc *OxygenUseCase) RecordOxygen(ctx *gin.Context, oxygen *Oxygen) error {
 	}
 
 	// 公式：无效原始数值 = 最后一条有效原始数值 - ( (最后一条有效原始数值 - 本次最新上报原始数值) / (无效数据条数 * 2小时间隔常量) )
+
 	// 通过公式计算最早一条无效数据的原属数值应该是多少
 	voidOxygen.RawData = validOxygen.RawData - ((validOxygen.RawData - oxygen.RawData) / float64(length*2))
 	voidOxygen.IsAutoPush = 1
